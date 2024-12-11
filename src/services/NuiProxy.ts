@@ -6,6 +6,8 @@ export class NuiProxy {
       const response = await axios.post(`http://${GetParentResourceName()}/${method}`, parameters)
       const result = response.data
 
+      console.log(result)
+
       if (!result || !result.success) {
         return false
       }
