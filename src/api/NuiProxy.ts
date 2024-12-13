@@ -1,6 +1,6 @@
 interface NuiMessage {
     type: string;
-    [key: string]: unknown;
+    [key: string]: any;
 }
 
 export class NuiProxy {

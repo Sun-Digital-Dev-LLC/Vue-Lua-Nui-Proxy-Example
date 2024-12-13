@@ -4,9 +4,10 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
-import { useOpenNuiStore } from '../stores/openNui'
+// import { nuiProxy } from '../api/NuiProxy'
 
-const isNuiOpen = useOpenNuiStore()
+const isNuiOpen = ref(false)
+
 </script>

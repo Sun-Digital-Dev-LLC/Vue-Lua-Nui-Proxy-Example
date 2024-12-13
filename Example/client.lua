@@ -16,3 +16,9 @@ RegisterNuiCallback("close", function(cb)
     SetNuiFocus(false, false)
     cb('ok')
 end)
+
+RegisterNuiCallback("message", function(cb, data)
+    print(data.message)
+    cb('ok')
+end)
+
