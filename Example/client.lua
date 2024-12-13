@@ -13,5 +13,6 @@ RegisterNuiCallback("close", function(cb)
         value = false
     })
 
-    cb({})
+    SetNuiFocus(false, false)
+    cb('ok')
 end)

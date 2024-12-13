@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-screen bg-gray-400 items-center justify-center">
+  <div v-show=isVisible class="flex min-h-screen bg-gray-400 items-center justify-center">
     <div class="items-center justify-center">
       <div class="text-center">
         <h1 class="text-4xl text-black font-bold mb-4">Welcome {{ user }}</h1>
@@ -7,7 +7,8 @@
         <p class="text-lg text-white">This is a template that allows Vue and Lua to use NUI to send messages back and forth.</p>
       </div>
       <div class="flex mt-4 gap-2 justify-center">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Send to Lua</button>
+        <input class="" />
+        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">Send to Lua</button>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Send to Vue</button>
       </div>
       <OpenContianer />
@@ -18,6 +19,23 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import OpenContianer from './components/OpenContianer.vue'
+import { nuiProxy } from './api/NuiProxy'
+
+const isVisible = ref(false)
+
+const handleUIState = (data: { enable: boolean }) => {
+  isVisible.value = data.enable
+  console.log('Data Value: ', data)
+  console.log('UI 狀態:', isVisible.value ? '開啟' : '關閉')
+}
+
+onMounted(() => {
+  nuiProxy.on('openNui', handleUIState)
+})
+
+unMounted(() => {
+  nuiProxy.emit('sun_NuiView/close', {})
+})
 
 const user = ref('Guest')
 </script>
